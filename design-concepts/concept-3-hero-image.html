@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>또리 - 컨셉 3: 히어로 이미지</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0F172A;
+            color: white;
+            min-height: 100vh;
+            max-width: 430px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            height: 70vh;
+            min-height: 500px;
+            background: linear-gradient(
+                180deg,
+                rgba(15, 23, 42, 0.3) 0%,
+                rgba(15, 23, 42, 0.6) 50%,
+                rgba(15, 23, 42, 1) 100%
+            ),
+            url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=80') center/cover;
+        }
+
+        /* Header */
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: white;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .header-icons i {
+            font-size: 22px;
+            color: white;
+            opacity: 0.8;
+        }
+
+        /* Hero Content */
+        .hero-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 32px 24px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 16px;
+        }
+
+        .hero-badge i {
+            color: #FCD34D;
+        }
+
+        .hero h1 {
+            font-size: 34px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            font-size: 15px;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 24px;
+            background: #0F172A;
+        }
+
+        /* CTA Buttons */
+        .cta-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 16px;
+            background: #F43F5E;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #E11D48;
+        }
+
+        .btn-secondary {
+            width: 100%;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 22px;
+            font-weight: 700;
+            color: #F43F5E;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 4px;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        /* Steps */
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .step {
+            display: flex;
+            gap: 16px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .step-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #F43F5E, #F97316);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .step-icon i {
+            font-size: 20px;
+        }
+
+        .step-content h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .step-content p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.4;
+        }
+
+        /* Popular Destinations */
+        .destinations {
+            margin-bottom: 32px;
+        }
+
+        .destination-scroll {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .destination-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .destination-card {
+            flex-shrink: 0;
+            width: 120px;
+            height: 160px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .destination-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .destination-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 12px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 24px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+        }
+
+        .copyright {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Bottom Nav */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 430px;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            padding-bottom: calc(12px + env(safe-area-inset-bottom));
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 10px;
+        }
+
+        .nav-item.active {
+            color: #F43F5E;
+        }
+
+        .nav-item i {
+            font-size: 22px;
+        }
+
+        /* Spacer */
+        .bottom-spacer {
+            height: 80px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section with Background Image -->
+    <section class="hero-section">
+        <header class="header">
+            <div class="logo">또리</div>
+            <div class="header-icons">
+                <i class="ri-notification-3-line"></i>
+                <i class="ri-global-line"></i>
+            </div>
+        </header>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="ri-star-fill"></i>
+                <span>4.8 평균 평점</span>
+            </div>
+            <div class="hero">
+                <h1>현지 친구와<br>떠나는 여행</h1>
+                <p>낯선 여행지에서 만나는 특별한 인연,<br>또리와 함께 시작하세요</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- CTA -->
+        <div class="cta-group">
+            <button class="btn-primary">
+                <i class="ri-add-line"></i>
+                동행 요청하기
+            </button>
+            <button class="btn-secondary">
+                <i class="ri-search-line"></i>
+                동행 신청 보러가기
+            </button>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">2.5K+</div>
+                <div class="stat-label">누적 매칭</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">지원 도시</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">만족도</div>
+            </div>
+        </div>
+
+        <!-- How it works -->
+        <h2 class="section-title">이용 방법</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-icon">
+                    <i class="ri-edit-line"></i>
+                </div>
+                <div class="step-content">
+                    <h3>동행 요청</h3>
+                    <p>여행지와 일정, 원하는 활동을 입력하세요</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-icon">
+                    <i class="ri-user-search-line"></i>
+                </div>
+                <div class="step-content">
+                    <h3>신청 확인</h3>
+                    <p>현지 친구들의 프로필을 확인하세요</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-icon">
+                    <i class="ri-heart-line"></i>
+                </div>
+                <div class="step-content">
+                    <h3>매칭 완료</h3>
+                    <p>마음에 드는 친구를 선택하고 만나세요</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Popular Destinations -->
+        <h2 class="section-title">인기 여행지</h2>
+        <div class="destinations">
+            <div class="destination-scroll">
+                <div class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=300&q=80" alt="Tokyo">
+                    <div class="destination-name">도쿄</div>
+                </div>
+                <div class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=300&q=80" alt="Paris">
+                    <div class="destination-name">파리</div>
+                </div>
+                <div class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=300&q=80" alt="New York">
+                    <div class="destination-name">뉴욕</div>
+                </div>
+                <div class="destination-card">
+                    <img src="https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=300&q=80" alt="Bangkok">
+                    <div class="destination-name">방콕</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="#">이용약관</a>
+                <a href="#">개인정보처리방침</a>
+                <a href="#">고객센터</a>
+            </div>
+            <div class="copyright">© 2025 TORI. All rights reserved.</div>
+        </footer>
+
+        <div class="bottom-spacer"></div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active">
+            <i class="ri-home-5-fill"></i>
+            <span>홈</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="ri-file-list-3-line"></i>
+            <span>요청</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="ri-user-add-line"></i>
+            <span>신청</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="ri-heart-line"></i>
+            <span>매칭</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="ri-user-line"></i>
+            <span>MY</span>
+        </a>
+    </nav>
+</body>
+</html>

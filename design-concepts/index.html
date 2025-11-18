@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>또리 - 메인 페이지 디자인 컨셉 (5종)</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #F8FAFC;
+            color: #0F172A;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #64748B;
+            margin-bottom: 8px;
+        }
+
+        .description {
+            font-size: 14px;
+            color: #94A3B8;
+        }
+
+        .concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+        }
+
+        .concept-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .concept-preview {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+
+        .concept-info {
+            padding: 20px;
+            border-top: 1px solid #E2E8F0;
+        }
+
+        .concept-number {
+            font-size: 12px;
+            font-weight: 600;
+            color: #94A3B8;
+            margin-bottom: 4px;
+        }
+
+        .concept-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .concept-desc {
+            font-size: 14px;
+            color: #64748B;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .concept-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .tag {
+            padding: 4px 10px;
+            background: #F1F5F9;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #475569;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #0F172A;
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #1E293B;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #0F172A;
+            border: 1px solid #E2E8F0;
+        }
+
+        .btn-secondary:hover {
+            background: #F8FAFC;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid #E2E8F0;
+        }
+
+        footer p {
+            font-size: 14px;
+            color: #94A3B8;
+        }
+
+        @media (max-width: 768px) {
+            .concepts-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>또리 메인 페이지 디자인</h1>
+            <p class="subtitle">5가지 컨셉 시안</p>
+            <p class="description">각 컨셉을 확인하고 하나를 선택해주세요</p>
+        </header>
+
+        <div class="concepts-grid">
+            <!-- Concept 1 -->
+            <div class="concept-card">
+                <iframe src="concept-1-minimal.html" class="concept-preview"></iframe>
+                <div class="concept-info">
+                    <div class="concept-number">CONCEPT 01</div>
+                    <h3 class="concept-title">미니멀 & 클린</h3>
+                    <p class="concept-desc">
+                        깔끔한 화이트 톤과 충분한 여백을 활용한 심플한 디자인.
+                        핵심 기능에 집중하고 시각적 노이즈를 최소화했습니다.
+                    </p>
+                    <div class="concept-tags">
+                        <span class="tag">화이트 톤</span>
+                        <span class="tag">심플</span>
+                        <span class="tag">여백 활용</span>
+                        <span class="tag">모던</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="concept-1-minimal.html" target="_blank" class="btn btn-primary">
+                            <i class="ri-external-link-line"></i> 새창에서 보기
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Concept 2 -->
+            <div class="concept-card">
+                <iframe src="concept-2-gradient.html" class="concept-preview"></iframe>
+                <div class="concept-info">
+                    <div class="concept-number">CONCEPT 02</div>
+                    <h3 class="concept-title">대담한 그라데이션</h3>
+                    <p class="concept-desc">
+                        2025 트렌드를 반영한 대담한 그라데이션과 글래스모피즘 효과.
+                        활기차고 현대적인 느낌을 강조했습니다.
+                    </p>
+                    <div class="concept-tags">
+                        <span class="tag">그라데이션</span>
+                        <span class="tag">글래스모피즘</span>
+                        <span class="tag">트렌디</span>
+                        <span class="tag">활기찬</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="concept-2-gradient.html" target="_blank" class="btn btn-primary">
+                            <i class="ri-external-link-line"></i> 새창에서 보기
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Concept 3 -->
+            <div class="concept-card">
+                <iframe src="concept-3-hero-image.html" class="concept-preview"></iframe>
+                <div class="concept-info">
+                    <div class="concept-number">CONCEPT 03</div>
+                    <h3 class="concept-title">히어로 이미지 중심</h3>
+                    <p class="concept-desc">
+                        여행 감성을 자극하는 대형 배경 이미지와 다크 테마.
+                        몰입감 있는 비주얼 경험을 제공합니다.
+                    </p>
+                    <div class="concept-tags">
+                        <span class="tag">배경 이미지</span>
+                        <span class="tag">다크 테마</span>
+                        <span class="tag">감성적</span>
+                        <span class="tag">몰입감</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="concept-3-hero-image.html" target="_blank" class="btn btn-primary">
+                            <i class="ri-external-link-line"></i> 새창에서 보기
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Concept 4 -->
+            <div class="concept-card">
+                <iframe src="concept-4-bento-grid.html" class="concept-preview"></iframe>
+                <div class="concept-info">
+                    <div class="concept-number">CONCEPT 04</div>
+                    <h3 class="concept-title">벤토 그리드 카드</h3>
+                    <p class="concept-desc">
+                        다양한 크기의 카드로 구성된 벤토 스타일 레이아웃.
+                        정보를 효율적으로 전달하면서 시각적 재미를 줍니다.
+                    </p>
+                    <div class="concept-tags">
+                        <span class="tag">벤토 그리드</span>
+                        <span class="tag">카드 UI</span>
+                        <span class="tag">정보 중심</span>
+                        <span class="tag">효율적</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="concept-4-bento-grid.html" target="_blank" class="btn btn-primary">
+                            <i class="ri-external-link-line"></i> 새창에서 보기
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Concept 5 -->
+            <div class="concept-card">
+                <iframe src="concept-5-friendly.html" class="concept-preview"></iframe>
+                <div class="concept-info">
+                    <div class="concept-number">CONCEPT 05</div>
+                    <h3 class="concept-title">일러스트 & 프렌들리</h3>
+                    <p class="concept-desc">
+                        친근한 일러스트와 따뜻한 파스텔 톤의 디자인.
+                        환영하는 분위기로 사용자에게 편안함을 줍니다.
+                    </p>
+                    <div class="concept-tags">
+                        <span class="tag">파스텔 톤</span>
+                        <span class="tag">친근함</span>
+                        <span class="tag">일러스트</span>
+                        <span class="tag">따뜻함</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="concept-5-friendly.html" target="_blank" class="btn btn-primary">
+                            <i class="ri-external-link-line"></i> 새창에서 보기
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>마음에 드는 컨셉을 선택해주시면 해당 스타일로 전체 페이지를 디자인하겠습니다.</p>
+        </footer>
+    </div>
+</body>
+</html>
