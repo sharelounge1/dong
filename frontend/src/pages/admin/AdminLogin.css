@@ -10,7 +10,7 @@
 .admin-login-container {
   width: 100%;
   max-width: 400px;
-  background: var(--surface);
+  background: #1E293B;
   border-radius: 20px;
   padding: 40px;
   text-align: center;
@@ -35,13 +35,13 @@
 .admin-login-container h1 {
   font-size: 24px;
   font-weight: 700;
-  color: var(--text-primary);
+  color: #F8FAFC;
   margin-bottom: 8px;
 }
 
 .subtitle {
   font-size: 14px;
-  color: var(--text-secondary);
+  color: #94A3B8;
   margin-bottom: 30px;
 }
 
@@ -55,40 +55,41 @@
   margin-bottom: 20px;
 }
 
-.form-group {
+.admin-login-container .form-group {
   margin-bottom: 20px;
   text-align: left;
 }
 
-.form-group label {
+.admin-login-container .form-group label {
   display: block;
   font-size: 14px;
   font-weight: 500;
-  color: var(--text-primary);
+  color: #F8FAFC;
   margin-bottom: 8px;
 }
 
-.form-group input {
+.admin-login-container .form-group input {
   width: 100%;
   padding: 14px 16px;
-  background: var(--background);
-  border: 1px solid var(--border);
+  background: #0F172A;
+  border: 1px solid #334155;
   border-radius: 10px;
   font-size: 15px;
-  color: var(--text-primary);
+  color: #F8FAFC;
   transition: border-color 0.2s;
+  box-sizing: border-box;
 }
 
-.form-group input:focus {
+.admin-login-container .form-group input:focus {
   outline: none;
-  border-color: var(--primary);
+  border-color: #F43F5E;
 }
 
-.form-group input::placeholder {
-  color: var(--text-muted);
+.admin-login-container .form-group input::placeholder {
+  color: #64748B;
 }
 
-.login-btn {
+.admin-login-container .login-btn {
   width: 100%;
   padding: 14px;
   background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
@@ -102,19 +103,19 @@
   margin-bottom: 20px;
 }
 
-.login-btn:hover {
+.admin-login-container .login-btn:hover {
   opacity: 0.9;
 }
 
-.login-btn:disabled {
+.admin-login-container .login-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-.back-btn {
+.admin-login-container .back-btn {
   background: none;
   border: none;
-  color: var(--text-secondary);
+  color: #94A3B8;
   font-size: 14px;
   cursor: pointer;
   display: inline-flex;
@@ -122,6 +123,6 @@
   gap: 4px;
 }
 
-.back-btn:hover {
-  color: var(--text-primary);
+.admin-login-container .back-btn:hover {
+  color: #F8FAFC;
 }
