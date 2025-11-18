@@ -1,0 +1,260 @@
+.request-detail-screen {
+  min-height: 100vh;
+  background: var(--background);
+}
+
+.detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  position: sticky;
+  top: 0;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 50;
+}
+
+.back-btn,
+.more-btn {
+  width: 40px;
+  height: 40px;
+  background: var(--surface);
+  border: none;
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-header h1 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.detail-content {
+  padding: 20px;
+}
+
+.request-info {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.status {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status.active {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10B981;
+}
+
+.created-at {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.request-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.info-item i {
+  color: var(--primary);
+}
+
+.description,
+.interests,
+.preferences {
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.description h3,
+.interests h3,
+.preferences h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.description p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.interest-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.interest-tags .tag {
+  padding: 6px 12px;
+  background: rgba(244, 63, 94, 0.1);
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--primary);
+}
+
+.pref-items {
+  display: flex;
+  gap: 16px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.applicants-section {
+  margin-bottom: 20px;
+}
+
+.section-header {
+  margin-bottom: 16px;
+}
+
+.section-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.applicants-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.applicant-card {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.applicant-header {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.applicant-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.applicant-info h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.rating i {
+  color: #FCD34D;
+}
+
+.rating span {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.rating .reviews {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.languages {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.applicant-message {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 12px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+}
+
+.applicant-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-profile,
+.btn-accept {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-profile {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.btn-accept {
+  background: var(--primary);
+  border: none;
+  color: white;
+}
+
+.btn-accept:hover {
+  background: var(--primary-dark);
+}
