@@ -7,11 +7,13 @@ function ApplyDetailScreen() {
   const { id } = useParams()
   const [message, setMessage] = useState('')
   const [showApplyForm, setShowApplyForm] = useState(false)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   // Mock data
   const request = {
     id: id,
     user: {
+      id: 'user123',
       name: '김지현',
       avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100',
       verified: true,
@@ -26,13 +28,33 @@ function ApplyDetailScreen() {
     preferredGender: '무관',
     preferredAge: '20-30대',
     budget: '50,000원',
-    createdAt: '2024.11.15'
+    createdAt: '2024.11.15',
+    images: [
+      'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800',
+      'https://images.unsplash.com/photo-1554797589-7241bb691973?w=800',
+      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800'
+    ]
   }
 
   const handleApply = () => {
-    // TODO: Submit application
     alert('신청이 완료되었습니다!')
     navigate('/apply')
+  }
+
+  const handlePrevImage = () => {
+    setCurrentImageIndex((prev) =>
+      prev === 0 ? request.images.length - 1 : prev - 1
+    )
+  }
+
+  const handleNextImage = () => {
+    setCurrentImageIndex((prev) =>
+      prev === request.images.length - 1 ? 0 : prev + 1
+    )
+  }
+
+  const handleProfileClick = () => {
+    navigate(`/profile/${request.user.id}`)
   }
 
   return (
@@ -46,8 +68,38 @@ function ApplyDetailScreen() {
       </header>
 
       <div className="detail-content">
-        {/* User Info */}
-        <div className="user-card">
+        {/* Image Carousel */}
+        {request.images && request.images.length > 0 && (
+          <div className="image-carousel">
+            <img
+              src={request.images[currentImageIndex]}
+              alt={`요청 이미지 ${currentImageIndex + 1}`}
+              className="carousel-image"
+            />
+            {request.images.length > 1 && (
+              <>
+                <button className="carousel-btn prev" onClick={handlePrevImage}>
+                  <i className="ri-arrow-left-s-line"></i>
+                </button>
+                <button className="carousel-btn next" onClick={handleNextImage}>
+                  <i className="ri-arrow-right-s-line"></i>
+                </button>
+                <div className="carousel-indicators">
+                  {request.images.map((_, idx) => (
+                    <button
+                      key={idx}
+                      className={`indicator ${idx === currentImageIndex ? 'active' : ''}`}
+                      onClick={() => setCurrentImageIndex(idx)}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+        )}
+
+        {/* User Info - Clickable */}
+        <div className="user-card" onClick={handleProfileClick}>
           <img src={request.user.avatar} alt={request.user.name} className="user-avatar" />
           <div className="user-details">
             <div className="user-name">
@@ -58,6 +110,7 @@ function ApplyDetailScreen() {
             </div>
             <p>{request.user.trips}회 여행 완료</p>
           </div>
+          <i className="ri-arrow-right-s-line profile-arrow"></i>
         </div>
 
         {/* Request Info */}

@@ -5,24 +5,25 @@ import './HomeScreen.css'
 function HomeScreen() {
   const navigate = useNavigate()
 
-  const localFriends = [
+  // 광고형 현지인 친구 이미지 카드
+  const localFriendAds = [
     {
       id: 1,
+      image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800',
       name: 'Yuki',
       age: 26,
-      location: '도쿄',
-      image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400',
-      languages: ['일본어', '영어'],
-      interests: ['맛집 탐방', '사진', '카페']
+      location: '오사카',
+      tags: ['맛집탐방', '이자카야'],
+      message: '같이 숨겨진 로컬 이자카야 소개해드릴게요! 같이 여행해요!'
     },
     {
       id: 2,
+      image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800',
       name: 'Sakura',
       age: 24,
-      location: '오사카',
-      image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400',
-      languages: ['일본어', '한국어'],
-      interests: ['쇼핑', '이자카야', '문화체험']
+      location: '도쿄',
+      tags: ['쇼핑', '카페투어'],
+      message: '도쿄의 숨은 카페와 빈티지샵 같이 돌아봐요!'
     }
   ]
 
@@ -81,11 +82,18 @@ function HomeScreen() {
       </header>
 
       <div className="home-content">
-        {/* Hero Section */}
+        {/* Hero Section with Image */}
         <section className="hero-section">
-          <div className="hero-text">
-            <h1>일본 현지인 친구와<br />로컬 여행을 즐겨보세요</h1>
-            <p>관광객은 모르는 진짜 일본을 경험하세요</p>
+          <div className="hero-banner">
+            <img
+              src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800"
+              alt="로컬 여행"
+              className="hero-image"
+            />
+            <div className="hero-overlay">
+              <h1>현지인 친구와 함께하는<br />진짜 로컬 여행</h1>
+              <p>현지인 친구를 만나보세요!</p>
+            </div>
           </div>
           <button className="cta-btn" onClick={() => navigate('/request/new')}>
             <i className="ri-add-line"></i>
@@ -93,32 +101,32 @@ function HomeScreen() {
           </button>
         </section>
 
-        {/* Local Friends Section */}
+        {/* Local Friends Ad Section */}
         <section className="section">
           <div className="section-header">
-            <h2>인기 현지인 친구</h2>
-            <button className="see-all">전체 보기</button>
+            <h2>현지인 친구들</h2>
           </div>
-          <div className="local-friends-list">
-            {localFriends.map((friend) => (
-              <div key={friend.id} className="friend-card">
-                <div className="friend-image">
-                  <img src={friend.image} alt={friend.name} />
-                  <div className="friend-badge">
-                    <i className="ri-verified-badge-fill"></i>
-                  </div>
+          <div className="local-friends-ads">
+            {localFriendAds.map((ad) => (
+              <div key={ad.id} className="friend-ad-card">
+                <div className="ad-image-container">
+                  <img src={ad.image} alt={ad.name} className="ad-image" />
+                  <div className="ad-gradient"></div>
                 </div>
-                <div className="friend-info">
-                  <h3>{friend.name}, {friend.age}</h3>
-                  <p className="friend-location">
-                    <i className="ri-map-pin-line"></i>
-                    {friend.location}
-                  </p>
-                  <div className="friend-tags">
-                    {friend.interests.slice(0, 2).map((interest, idx) => (
-                      <span key={idx} className="tag">{interest}</span>
+                <div className="ad-content">
+                  <div className="ad-profile">
+                    <h3>{ad.name}, {ad.age}</h3>
+                    <p className="ad-location">
+                      <i className="ri-map-pin-line"></i>
+                      {ad.location}
+                    </p>
+                  </div>
+                  <div className="ad-tags">
+                    {ad.tags.map((tag, idx) => (
+                      <span key={idx} className="ad-tag">{tag}</span>
                     ))}
                   </div>
+                  <p className="ad-message">{ad.message}</p>
                 </div>
               </div>
             ))}

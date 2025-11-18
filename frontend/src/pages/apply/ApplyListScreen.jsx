@@ -6,6 +6,7 @@ import './ApplyListScreen.css'
 function ApplyListScreen() {
   const navigate = useNavigate()
   const [selectedLocation, setSelectedLocation] = useState('all')
+  const [searchQuery, setSearchQuery] = useState('')
 
   const requests = [
     {
@@ -78,19 +79,42 @@ function ApplyListScreen() {
     { value: 'fukuoka', label: '후쿠오카' }
   ]
 
-  const filteredRequests = selectedLocation === 'all'
-    ? requests
-    : requests.filter(r => r.destination.toLowerCase().includes(selectedLocation))
+  // Filter by location and search query
+  const filteredRequests = requests.filter(r => {
+    const matchesLocation = selectedLocation === 'all' ||
+      r.destination.toLowerCase().includes(selectedLocation)
+    const matchesSearch = searchQuery === '' ||
+      r.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      r.interests.some(i => i.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      r.destination.toLowerCase().includes(searchQuery.toLowerCase())
+    return matchesLocation && matchesSearch
+  })
 
   return (
     <div className="apply-list-screen">
       <header className="screen-header">
         <h1>동행 신청</h1>
-        <button className="filter-btn">
-          <i className="ri-filter-3-line"></i>
-        </button>
       </header>
 
+      {/* Search Bar */}
+      <div className="search-section">
+        <div className="search-input-wrapper">
+          <i className="ri-search-line"></i>
+          <input
+            type="text"
+            placeholder="지역, 관심사로 검색"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          {searchQuery && (
+            <button className="clear-btn" onClick={() => setSearchQuery('')}>
+              <i className="ri-close-line"></i>
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Location Filter Tabs */}
       <div className="location-tabs">
         {locations.map((loc) => (
           <button
@@ -104,57 +128,61 @@ function ApplyListScreen() {
       </div>
 
       <div className="apply-content">
-        <div className="requests-list">
-          {filteredRequests.map((request) => (
-            <div
-              key={request.id}
-              className="request-card"
-              onClick={() => navigate(`/apply/${request.id}`)}
-            >
-              <div className="card-header">
-                <div className="user-info">
-                  <img src={request.user.avatar} alt={request.user.name} />
-                  <span>{request.user.name}</span>
-                  {request.user.verified && (
-                    <i className="ri-verified-badge-fill verified"></i>
-                  )}
+        {filteredRequests.length === 0 ? (
+          <div className="empty-state">
+            <i className="ri-search-line"></i>
+            <p>검색 결과가 없습니다</p>
+          </div>
+        ) : (
+          <div className="requests-list">
+            {filteredRequests.map((request) => (
+              <div
+                key={request.id}
+                className="request-card"
+                onClick={() => navigate(`/apply/${request.id}`)}
+              >
+                <div className="card-header">
+                  <div className="user-info">
+                    <img src={request.user.avatar} alt={request.user.name} />
+                    <span>{request.user.name}</span>
+                    {request.user.verified && (
+                      <i className="ri-verified-badge-fill verified"></i>
+                    )}
+                  </div>
+                  <span className="created-at">{request.createdAt}</span>
                 </div>
-                <span className="created-at">{request.createdAt}</span>
-              </div>
 
-              <h3 className="card-title">{request.title}</h3>
+                <h3 className="card-title">{request.title}</h3>
 
-              <div className="card-info">
-                <span>
-                  <i className="ri-map-pin-line"></i>
-                  {request.destination}
-                </span>
-                <span>
-                  <i className="ri-calendar-line"></i>
-                  {request.dates}
-                </span>
-                <span>
-                  <i className="ri-group-line"></i>
-                  {request.groupSize}명
-                </span>
-              </div>
+                <div className="card-info">
+                  <span>
+                    <i className="ri-map-pin-line"></i>
+                    {request.destination}
+                  </span>
+                  <span>
+                    <i className="ri-calendar-line"></i>
+                    {request.dates}
+                  </span>
+                  <span>
+                    <i className="ri-group-line"></i>
+                    {request.groupSize}명
+                  </span>
+                </div>
 
-              <div className="card-tags">
-                {request.interests.map((interest, idx) => (
-                  <span key={idx} className="tag">{interest}</span>
-                ))}
-              </div>
+                <div className="card-tags">
+                  {request.interests.map((interest, idx) => (
+                    <span key={idx} className="tag">{interest}</span>
+                  ))}
+                </div>
 
-              <div className="card-footer">
-                <span className="budget">
-                  <i className="ri-money-dollar-circle-line"></i>
-                  {request.budget}
-                </span>
-                <button className="apply-btn">신청하기</button>
+                <div className="card-footer">
+                  <span className="budget">{request.budget}</span>
+                  <button className="apply-btn-small">신청</button>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <BottomNav />

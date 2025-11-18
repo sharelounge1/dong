@@ -21,6 +21,7 @@ import ApplyDetailScreen from './pages/apply/ApplyDetailScreen'
 
 // Match pages
 import MatchListScreen from './pages/match/MatchListScreen'
+import MatchDetailScreen from './pages/match/MatchDetailScreen'
 import ChatScreen from './pages/match/ChatScreen'
 
 // Point pages
@@ -34,6 +35,9 @@ import SettingsScreen from './pages/mypage/SettingsScreen'
 
 // Notification
 import NotificationScreen from './pages/notification/NotificationScreen'
+
+// Profile
+import ProfileViewScreen from './pages/profile/ProfileViewScreen'
 
 function App() {
   return (
@@ -59,7 +63,8 @@ function App() {
 
       {/* Match */}
       <Route path="/match" element={<MatchListScreen />} />
-      <Route path="/match/:id" element={<ChatScreen />} />
+      <Route path="/match/:id" element={<MatchDetailScreen />} />
+      <Route path="/match/:id/chat" element={<ChatScreen />} />
 
       {/* Point */}
       <Route path="/point" element={<PointScreen />} />
@@ -72,6 +77,9 @@ function App() {
 
       {/* Notification */}
       <Route path="/notifications" element={<NotificationScreen />} />
+
+      {/* Profile */}
+      <Route path="/profile/:id" element={<ProfileViewScreen />} />
     </Routes>
   )
 }
