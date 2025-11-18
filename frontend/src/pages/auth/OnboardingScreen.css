@@ -1,0 +1,127 @@
+.onboarding-screen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--background);
+}
+
+.onboarding-image {
+  position: relative;
+  height: 45%;
+  background-size: cover;
+  background-position: center;
+}
+
+.image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, var(--background));
+}
+
+.onboarding-content {
+  flex: 1;
+  padding: 24px;
+  padding-bottom: calc(24px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.skip-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+.step-icon {
+  width: 72px;
+  height: 72px;
+  background: rgba(244, 63, 94, 0.15);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.step-icon i {
+  font-size: 32px;
+  color: var(--primary);
+}
+
+.step-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.step-description {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  white-space: pre-line;
+  margin-bottom: 32px;
+}
+
+.step-indicators {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.step-indicator {
+  width: 32px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+.step-indicator.active {
+  background: var(--primary);
+  width: 48px;
+}
+
+.step-indicator.completed {
+  background: var(--primary);
+}
+
+.next-btn {
+  width: 100%;
+  padding: 16px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: auto;
+  transition: all 0.2s;
+}
+
+.next-btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.next-btn i {
+  font-size: 20px;
+}
