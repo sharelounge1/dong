@@ -39,6 +39,10 @@ import NotificationScreen from './pages/notification/NotificationScreen'
 // Profile
 import ProfileViewScreen from './pages/profile/ProfileViewScreen'
 
+// Admin
+import AdminLogin from './pages/admin/AdminLogin'
+import AdminDashboard from './pages/admin/AdminDashboard'
+
 function App() {
   return (
     <Routes>
@@ -80,6 +84,10 @@ function App() {
 
       {/* Profile */}
       <Route path="/profile/:id" element={<ProfileViewScreen />} />
+
+      {/* Admin */}
+      <Route path="/admin" element={<AdminLogin />} />
+      <Route path="/admin/dashboard" element={<AdminDashboard />} />
     </Routes>
   )
 }

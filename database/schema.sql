@@ -25,6 +25,7 @@ CREATE TABLE profiles (
   photos TEXT[] DEFAULT '{}',
   is_local BOOLEAN DEFAULT FALSE,
   is_verified BOOLEAN DEFAULT FALSE,
+  is_admin BOOLEAN DEFAULT FALSE,
   points INTEGER DEFAULT 0,
   rating DECIMAL(2,1) DEFAULT 0.0,
   total_reviews INTEGER DEFAULT 0,

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { supabase } from '../../lib/supabase'
 import './LoginScreen.css'
 
 function LoginScreen() {
@@ -9,6 +10,8 @@ function LoginScreen() {
     password: ''
   })
   const [showPassword, setShowPassword] = useState(false)
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const handleChange = (e) => {
     setFormData({
@@ -17,15 +20,40 @@ function LoginScreen() {
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // TODO: Implement login logic
-    navigate('/home')
+    setError('')
+    setLoading(true)
+
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: formData.email,
+        password: formData.password
+      })
+
+      if (error) throw error
+
+      navigate('/home')
+    } catch (err) {
+      setError(err.message === 'Invalid login credentials'
+        ? '이메일 또는 비밀번호가 올바르지 않습니다.'
+        : err.message)
+    } finally {
+      setLoading(false)
+    }
   }
 
-  const handleSocialLogin = (provider) => {
-    // TODO: Implement social login
-    console.log(`Login with ${provider}`)
+  const handleSocialLogin = async (provider) => {
+    // Social login implementation
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: provider,
+      options: {
+        redirectTo: `${window.location.origin}/home`
+      }
+    })
+    if (error) {
+      setError(error.message)
+    }
   }
 
   return (
@@ -43,6 +71,8 @@ function LoginScreen() {
         </div>
 
         <form className="login-form" onSubmit={handleSubmit}>
+          {error && <div className="error-message">{error}</div>}
+
           <div className="input-group">
             <label>이메일</label>
             <div className="input-wrapper">
@@ -84,8 +114,8 @@ function LoginScreen() {
             비밀번호를 잊으셨나요?
           </button>
 
-          <button type="submit" className="login-btn">
-            로그인
+          <button type="submit" className="login-btn" disabled={loading}>
+            {loading ? '로그인 중...' : '로그인'}
           </button>
         </form>
 

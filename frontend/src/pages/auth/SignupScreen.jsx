@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { supabase } from '../../lib/supabase'
 import './SignupScreen.css'
 
 function SignupScreen() {
@@ -14,6 +15,8 @@ function SignupScreen() {
     verificationCode: ''
   })
   const [showPassword, setShowPassword] = useState(false)
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const handleChange = (e) => {
     setFormData({
@@ -22,13 +25,70 @@ function SignupScreen() {
     })
   }
 
-  const handleNext = () => {
-    if (step < 3) {
-      setStep(step + 1)
-    } else {
-      // Complete signup
-      navigate('/home')
+  const handleNext = async () => {
+    setError('')
+
+    // Validation for step 1
+    if (step === 1) {
+      if (!formData.email || !formData.password || !formData.confirmPassword) {
+        setError('모든 필드를 입력해주세요.')
+        return
+      }
+      if (formData.password.length < 8) {
+        setError('비밀번호는 8자 이상이어야 합니다.')
+        return
+      }
+      if (formData.password !== formData.confirmPassword) {
+        setError('비밀번호가 일치하지 않습니다.')
+        return
+      }
     }
+
+    // Validation for step 3 - Complete signup
+    if (step === 3) {
+      if (!formData.nickname) {
+        setError('닉네임을 입력해주세요.')
+        return
+      }
+
+      setLoading(true)
+      try {
+        const { data, error } = await supabase.auth.signUp({
+          email: formData.email,
+          password: formData.password,
+          options: {
+            data: {
+              name: formData.nickname,
+              nickname: formData.nickname,
+              phone: formData.phone
+            }
+          }
+        })
+
+        if (error) throw error
+
+        // Update profile with additional info
+        if (data.user) {
+          await supabase
+            .from('profiles')
+            .update({
+              nickname: formData.nickname,
+              phone: formData.phone
+            })
+            .eq('id', data.user.id)
+        }
+
+        alert('회원가입이 완료되었습니다!')
+        navigate('/home')
+      } catch (err) {
+        setError(err.message)
+      } finally {
+        setLoading(false)
+      }
+      return
+    }
+
+    setStep(step + 1)
   }
 
   const handleSendCode = () => {
@@ -174,13 +234,14 @@ function SignupScreen() {
 
       <div className="signup-content">
         <form className="signup-form">
+          {error && <div className="error-message">{error}</div>}
           {renderStep()}
         </form>
       </div>
 
       <div className="signup-footer">
-        <button className="next-btn" onClick={handleNext}>
-          {step === 3 ? '가입 완료' : '다음'}
+        <button className="next-btn" onClick={handleNext} disabled={loading}>
+          {loading ? '처리 중...' : step === 3 ? '가입 완료' : '다음'}
         </button>
       </div>
     </div>
