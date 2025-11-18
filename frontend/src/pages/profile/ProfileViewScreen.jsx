@@ -1,9 +1,12 @@
+import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import './ProfileViewScreen.css'
 
 function ProfileViewScreen() {
   const navigate = useNavigate()
   const { id } = useParams()
+  const [showPhotoModal, setShowPhotoModal] = useState(false)
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0)
 
   // Mock data - in real app, fetch based on id
   const user = {
@@ -16,6 +19,12 @@ function ProfileViewScreen() {
     bio: '여행을 사랑하는 20대 직장인입니다. 새로운 문화와 음식 탐방을 좋아해요! 일본 여행은 5번째인데 항상 새로운 경험을 찾고 있어요.',
     languages: ['한국어', '영어', '일본어(기초)'],
     interests: ['맛집 탐방', '이자카야', '카페', '사진', '쇼핑'],
+    photos: [
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800',
+      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800',
+      'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=800',
+      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800'
+    ],
     stats: {
       trips: 5,
       reviews: 12,
@@ -39,6 +48,23 @@ function ProfileViewScreen() {
         date: '2024.10.25'
       }
     ]
+  }
+
+  const handlePhotoClick = (index) => {
+    setCurrentPhotoIndex(index)
+    setShowPhotoModal(true)
+  }
+
+  const handlePrevPhoto = () => {
+    setCurrentPhotoIndex((prev) =>
+      prev === 0 ? user.photos.length - 1 : prev - 1
+    )
+  }
+
+  const handleNextPhoto = () => {
+    setCurrentPhotoIndex((prev) =>
+      prev === user.photos.length - 1 ? 0 : prev + 1
+    )
   }
 
   return (
@@ -87,6 +113,22 @@ function ProfileViewScreen() {
             <span className="stat-label">평점</span>
           </div>
         </div>
+
+        {/* Photos */}
+        <section className="profile-section">
+          <h3>사진</h3>
+          <div className="photo-gallery">
+            {user.photos.map((photo, index) => (
+              <div
+                key={index}
+                className="photo-item"
+                onClick={() => handlePhotoClick(index)}
+              >
+                <img src={photo} alt={`사진 ${index + 1}`} />
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* Bio */}
         <section className="profile-section">
@@ -138,6 +180,39 @@ function ProfileViewScreen() {
           </div>
         </section>
       </div>
+
+      {/* Photo Modal */}
+      {showPhotoModal && (
+        <div className="photo-modal-overlay" onClick={() => setShowPhotoModal(false)}>
+          <div className="photo-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close-btn" onClick={() => setShowPhotoModal(false)}>
+              <i className="ri-close-line"></i>
+            </button>
+            <div className="photo-modal-content">
+              <button className="photo-nav-btn prev" onClick={handlePrevPhoto}>
+                <i className="ri-arrow-left-s-line"></i>
+              </button>
+              <img
+                src={user.photos[currentPhotoIndex]}
+                alt={`사진 ${currentPhotoIndex + 1}`}
+                className="modal-photo"
+              />
+              <button className="photo-nav-btn next" onClick={handleNextPhoto}>
+                <i className="ri-arrow-right-s-line"></i>
+              </button>
+            </div>
+            <div className="photo-indicators">
+              {user.photos.map((_, index) => (
+                <span
+                  key={index}
+                  className={`indicator ${index === currentPhotoIndex ? 'active' : ''}`}
+                  onClick={() => setCurrentPhotoIndex(index)}
+                ></span>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

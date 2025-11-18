@@ -154,21 +154,36 @@
   color: #3B82F6;
 }
 
-.message-time {
-  font-size: 12px;
-  color: var(--text-muted);
+.match-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 6px;
 }
 
-.match-title {
+.match-detail {
   font-size: 13px;
   color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
   margin-bottom: 4px;
 }
 
-.last-message {
-  font-size: 14px;
+.match-detail i {
+  font-size: 12px;
+  color: var(--primary);
+}
+
+.match-dates {
+  font-size: 12px;
   color: var(--text-muted);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.match-dates i {
+  font-size: 11px;
+  color: var(--text-muted);
 }

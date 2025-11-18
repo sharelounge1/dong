@@ -57,11 +57,11 @@ function HomeScreen() {
     }
   ]
 
-  const popularDestinations = [
-    { name: '도쿄', count: 124, image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400' },
-    { name: '오사카', count: 98, image: 'https://images.unsplash.com/photo-1590559899731-a382839e5549?w=400' },
-    { name: '교토', count: 76, image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=400' },
-    { name: '후쿠오카', count: 45, image: 'https://images.unsplash.com/photo-1577086664693-894d8c895f93?w=400' }
+  const popularCourses = [
+    { name: '맛집 투어', count: 156, image: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=400' },
+    { name: '관광지 투어', count: 124, image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=400' },
+    { name: '파티 투어', count: 89, image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400' },
+    { name: '쇼핑 투어', count: 112, image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400' }
   ]
 
   return (
@@ -133,18 +133,18 @@ function HomeScreen() {
           </div>
         </section>
 
-        {/* Popular Destinations */}
+        {/* Popular Courses */}
         <section className="section">
           <div className="section-header">
-            <h2>인기 여행지</h2>
+            <h2>인기 동행 코스</h2>
           </div>
           <div className="destinations-grid">
-            {popularDestinations.map((dest, idx) => (
+            {popularCourses.map((course, idx) => (
               <div key={idx} className="destination-card">
-                <img src={dest.image} alt={dest.name} />
+                <img src={course.image} alt={course.name} />
                 <div className="destination-overlay">
-                  <h3>{dest.name}</h3>
-                  <p>{dest.count}명 활동 중</p>
+                  <h3>{course.name}</h3>
+                  <p>{course.count}건 요청</p>
                 </div>
               </div>
             ))}
@@ -155,7 +155,6 @@ function HomeScreen() {
         <section className="section reviews-section">
           <div className="section-header">
             <h2>생생한 여행 후기</h2>
-            <button className="see-all">더보기</button>
           </div>
           <div className="reviews-list">
             {reviews.map((review) => (
@@ -170,7 +169,6 @@ function HomeScreen() {
                       ))}
                     </div>
                   </div>
-                  <span className="review-date">{review.date}</span>
                 </div>
                 <p className="review-text">{review.text}</p>
                 {review.image && (

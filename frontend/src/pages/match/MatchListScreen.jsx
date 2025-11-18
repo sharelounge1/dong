@@ -111,10 +111,16 @@ function MatchListScreen() {
                         <i className="ri-verified-badge-fill"></i>
                       )}
                     </h3>
-                    <span className="message-time">{match.lastMessageTime}</span>
                   </div>
                   <p className="match-title">{match.title}</p>
-                  <p className="last-message">{match.lastMessage}</p>
+                  <p className="match-detail">
+                    <i className="ri-map-pin-line"></i>
+                    {match.destination}
+                  </p>
+                  <p className="match-dates">
+                    <i className="ri-calendar-line"></i>
+                    {match.dates}
+                  </p>
                 </div>
               </div>
             ))}
